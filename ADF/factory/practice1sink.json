@@ -1,0 +1,9 @@
+{
+	"name": "practice1sink",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d67acbec-81a6-4a27-9613-4888112dcefa",
+		"tenantId": "be1d015d-7055-4cac-bf03-9348a85b86f4"
+	}
+}
