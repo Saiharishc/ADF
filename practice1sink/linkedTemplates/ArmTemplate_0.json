@@ -1,0 +1,413 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "practice1sink"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureBlobStorage3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage3_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "outputdatacontainer"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/blobstorageinput')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Policy_Binding.csv",
+						"container": "inputdatacontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "QuoteNum",
+						"type": "String"
+					},
+					{
+						"name": "Underwriter",
+						"type": "String"
+					},
+					{
+						"name": "UWTeam",
+						"type": "String"
+					},
+					{
+						"name": "NationwideProducer_Key",
+						"type": "String"
+					},
+					{
+						"name": "ProducerCode",
+						"type": "String"
+					},
+					{
+						"name": "Territory",
+						"type": "String"
+					},
+					{
+						"name": "TerritoryGroup",
+						"type": "String"
+					},
+					{
+						"name": "Bound",
+						"type": "String"
+					},
+					{
+						"name": "GovState",
+						"type": "String"
+					},
+					{
+						"name": "GovClass",
+						"type": "String"
+					},
+					{
+						"name": "InceptionMonth",
+						"type": "String"
+					},
+					{
+						"name": "SubmitMonth",
+						"type": "String"
+					},
+					{
+						"name": "QuoteMonth",
+						"type": "String"
+					},
+					{
+						"name": "CARRIER",
+						"type": "String"
+					},
+					{
+						"name": "PriorGroupCarrier",
+						"type": "String"
+					},
+					{
+						"name": "PremiumBand",
+						"type": "String"
+					},
+					{
+						"name": "TenureYears",
+						"type": "String"
+					},
+					{
+						"name": "CountRiskState",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryLocationState",
+						"type": "String"
+					},
+					{
+						"name": "AgencyState",
+						"type": "String"
+					},
+					{
+						"name": "quotetoinceptiondays",
+						"type": "String"
+					},
+					{
+						"name": "submittoinceptiondays",
+						"type": "String"
+					},
+					{
+						"name": "Commission",
+						"type": "String"
+					},
+					{
+						"name": "CurrentTotalPremium",
+						"type": "String"
+					},
+					{
+						"name": "CurrentTotalPayroll",
+						"type": "String"
+					},
+					{
+						"name": "ExMod1",
+						"type": "String"
+					},
+					{
+						"name": "NAICSKey",
+						"type": "String"
+					},
+					{
+						"name": "IsLitigatedClaim",
+						"type": "String"
+					},
+					{
+						"name": "PriorPolicyPremium",
+						"type": "String"
+					},
+					{
+						"name": "PriorPolicyPayroll",
+						"type": "String"
+					},
+					{
+						"name": "GovclassTotalPremium",
+						"type": "String"
+					},
+					{
+						"name": "IndemnityPer1MTotalPayroll",
+						"type": "String"
+					},
+					{
+						"name": "MedicalPer1MTotalPayroll",
+						"type": "String"
+					},
+					{
+						"name": "NetRateChange",
+						"type": "String"
+					},
+					{
+						"name": "SoloScore",
+						"type": "String"
+					},
+					{
+						"name": "Territory_Rating",
+						"type": "String"
+					},
+					{
+						"name": "DEBIT_CREDIT",
+						"type": "String"
+					},
+					{
+						"name": "NewRenewal_New",
+						"type": "String"
+					},
+					{
+						"name": "NewRenewal_Renewal",
+						"type": "String"
+					},
+					{
+						"name": "WholesalerRetailer_Retailer",
+						"type": "String"
+					},
+					{
+						"name": "WholesalerRetailer_Wholesaler",
+						"type": "String"
+					},
+					{
+						"name": "PresidentsCircle_N",
+						"type": "String"
+					},
+					{
+						"name": "PresidentsCircle_Y",
+						"type": "String"
+					},
+					{
+						"name": "PresidentsCircleWholesalerRetailer_President's Circle",
+						"type": "String"
+					},
+					{
+						"name": "PresidentsCircleWholesalerRetailer_Retailer",
+						"type": "String"
+					},
+					{
+						"name": "PresidentsCircleWholesalerRetailer_Wholesaler",
+						"type": "String"
+					},
+					{
+						"name": "NewVenture_NO",
+						"type": "String"
+					},
+					{
+						"name": "NewVenture_YES",
+						"type": "String"
+					},
+					{
+						"name": "StateGroup_CA",
+						"type": "String"
+					},
+					{
+						"name": "StateGroup_Non-CA",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "blob to blob",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "blobstorageinput",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Json2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/blobstorageinput')]",
+				"[concat(variables('factoryId'), '/datasets/Json2')]"
+			]
+		}
+	]
+}
