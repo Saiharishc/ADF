@@ -1,0 +1,227 @@
+{
+	"name": "blobstorageinput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "inputdatacontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "QuoteNum",
+				"type": "String"
+			},
+			{
+				"name": "Underwriter",
+				"type": "String"
+			},
+			{
+				"name": "UWTeam",
+				"type": "String"
+			},
+			{
+				"name": "NationwideProducer_Key",
+				"type": "String"
+			},
+			{
+				"name": "ProducerCode",
+				"type": "String"
+			},
+			{
+				"name": "Territory",
+				"type": "String"
+			},
+			{
+				"name": "TerritoryGroup",
+				"type": "String"
+			},
+			{
+				"name": "Bound",
+				"type": "String"
+			},
+			{
+				"name": "GovState",
+				"type": "String"
+			},
+			{
+				"name": "GovClass",
+				"type": "String"
+			},
+			{
+				"name": "InceptionMonth",
+				"type": "String"
+			},
+			{
+				"name": "SubmitMonth",
+				"type": "String"
+			},
+			{
+				"name": "QuoteMonth",
+				"type": "String"
+			},
+			{
+				"name": "CARRIER",
+				"type": "String"
+			},
+			{
+				"name": "PriorGroupCarrier",
+				"type": "String"
+			},
+			{
+				"name": "PremiumBand",
+				"type": "String"
+			},
+			{
+				"name": "TenureYears",
+				"type": "String"
+			},
+			{
+				"name": "CountRiskState",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryLocationState",
+				"type": "String"
+			},
+			{
+				"name": "AgencyState",
+				"type": "String"
+			},
+			{
+				"name": "quotetoinceptiondays",
+				"type": "String"
+			},
+			{
+				"name": "submittoinceptiondays",
+				"type": "String"
+			},
+			{
+				"name": "Commission",
+				"type": "String"
+			},
+			{
+				"name": "CurrentTotalPremium",
+				"type": "String"
+			},
+			{
+				"name": "CurrentTotalPayroll",
+				"type": "String"
+			},
+			{
+				"name": "ExMod1",
+				"type": "String"
+			},
+			{
+				"name": "NAICSKey",
+				"type": "String"
+			},
+			{
+				"name": "IsLitigatedClaim",
+				"type": "String"
+			},
+			{
+				"name": "PriorPolicyPremium",
+				"type": "String"
+			},
+			{
+				"name": "PriorPolicyPayroll",
+				"type": "String"
+			},
+			{
+				"name": "GovclassTotalPremium",
+				"type": "String"
+			},
+			{
+				"name": "IndemnityPer1MTotalPayroll",
+				"type": "String"
+			},
+			{
+				"name": "MedicalPer1MTotalPayroll",
+				"type": "String"
+			},
+			{
+				"name": "NetRateChange",
+				"type": "String"
+			},
+			{
+				"name": "SoloScore",
+				"type": "String"
+			},
+			{
+				"name": "Territory_Rating",
+				"type": "String"
+			},
+			{
+				"name": "DEBIT_CREDIT",
+				"type": "String"
+			},
+			{
+				"name": "NewRenewal_New",
+				"type": "String"
+			},
+			{
+				"name": "NewRenewal_Renewal",
+				"type": "String"
+			},
+			{
+				"name": "WholesalerRetailer_Retailer",
+				"type": "String"
+			},
+			{
+				"name": "WholesalerRetailer_Wholesaler",
+				"type": "String"
+			},
+			{
+				"name": "PresidentsCircle_N",
+				"type": "String"
+			},
+			{
+				"name": "PresidentsCircle_Y",
+				"type": "String"
+			},
+			{
+				"name": "PresidentsCircleWholesalerRetailer_President's Circle",
+				"type": "String"
+			},
+			{
+				"name": "PresidentsCircleWholesalerRetailer_Retailer",
+				"type": "String"
+			},
+			{
+				"name": "PresidentsCircleWholesalerRetailer_Wholesaler",
+				"type": "String"
+			},
+			{
+				"name": "NewVenture_NO",
+				"type": "String"
+			},
+			{
+				"name": "NewVenture_YES",
+				"type": "String"
+			},
+			{
+				"name": "StateGroup_CA",
+				"type": "String"
+			},
+			{
+				"name": "StateGroup_Non-CA",
+				"type": "String"
+			}
+		]
+	}
+}
