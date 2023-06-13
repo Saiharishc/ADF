@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "Policy_Binding.csv",
 				"container": "inputdatacontainer"
 			},
 			"columnDelimiter": ",",
